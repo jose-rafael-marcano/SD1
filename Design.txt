@@ -1,0 +1,47 @@
+Ask Clarifying question 
+
+System API 
+
+Assuming no images/ or attachment, only text.
+
+Response create(api-key,userId,text )
+Response is json with {"id:UUID",
+                       "url":"www.hostame/userId/6unikey",
+					   "date":"UTC date of creation",
+					   "expirationTime":"UTC datetime"}
+					   
+
+Response get(api-key,userId,url)
+Response is json with {"id:UUID",
+                        "text":" ....... ",
+						 "expirationTime":"UTC datetime"}
+
+
+						
+
+Response delete(api-key,userId,userId,url)
+Response is json with {"id:UUID",
+                        "status":"success"/"failure"/"documentNotFound"}
+						
+						
+Calculations:
+
+my system will be read heavy:
+so ratio is 100:1
+I am assuming 1 million of new url per day. so this mean 1 000,000 x 100 reads per day= 100,000, 000 of reads per day.
+QPS for write 1 000 0000 /86400 ~ 12 QPS 
+
+For read will be 12 x 100 ~ 1200 QPS for read. 
+
+
+i am assuming the text to be store will be max 5 mb but average will be 100k. so this text plus 1000 bytes of metadata.
+so in average we will multiply 101k x 1,000,000 -> 101 000 000 kb -> ~ 102 gb per per day. then x 30 ~ 3060 GB per month 3.1 TB. 
+
+ 3.1 TB x 12 ~ 36 TB per year.
+if we want to get extra space we can buy 40 tb per year to mantain more than 20% free. then we will have 44 TB per year.  
+
+44 tb x 10 years will be 440 tb in ten years
+
+ 
+
+
